@@ -8,6 +8,7 @@ function Dashboard(props) {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
+    console.log("token start: ",token);
     if (!token) {
       axios
         .post(
@@ -17,7 +18,6 @@ function Dashboard(props) {
         )
         .then((r) => {
           console.log("res ", r);
-          settoken(r.data.token);
         })
         .catch((err) => {
           try {
@@ -30,7 +30,7 @@ function Dashboard(props) {
           }
         });
     }
-    console.log(token);
+    console.log("token end: ",token);
   }, []);
   return <div className="">Dashboard</div>;
 }
