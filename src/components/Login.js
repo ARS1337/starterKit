@@ -24,6 +24,7 @@ function Login(props) {
       user: username,
       pwd: password,
     });
+    console.log(res)
     if (res.data.success === 1) {
       console.log(res.data)
       settoken(res.data.token)
@@ -31,10 +32,11 @@ function Login(props) {
       enqueueSnackbar(process + " successfull !", { variant: "success" });
       navigate("/Dashboard");
     } else {
-      seterrors(res.data.errors);
-      res.data.errors.map((error) =>
-        enqueueSnackbar(error.msg, { variant: "error" })
-      );
+      enqueueSnackbar(process + " failed ", { variant: "error" });
+      // seterrors(res.data.errors);
+      // res.data.errors.map((error) =>
+      //   enqueueSnackbar(error.msg, { variant: "error" })
+      // );
     }
   };
 

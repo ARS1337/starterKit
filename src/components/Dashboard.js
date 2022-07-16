@@ -9,7 +9,7 @@ function Dashboard(props) {
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
     console.log("token start: ",token);
-    if (!token) {
+    if (token) {
       axios
         .post(
           "http://localhost:3001/protectedRoute",
@@ -29,6 +29,8 @@ function Dashboard(props) {
             console.log(err);
           }
         });
+    }else{
+      navigate('/')
     }
     console.log("token end: ",token);
   }, []);
