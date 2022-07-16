@@ -43,7 +43,7 @@ function Login(props) {
   return (
     <div className="flex items-center justify-center h-[100vh]  bg-slate-300 text-white">
       <form action="">
-        <div className="flex items-center justify-center flex-col gap-4 drop-shadow-xl bg-orange-300 p-8 pb-6 rounded-2xl mb-[10vh]">
+        <div className="flex items-center justify-center flex-col gap-4 drop-shadow-xl bg-orange-400 p-8 pb-6 rounded-2xl mb-[10vh]">
           <div className="text-3xl font-thin tracking-wide mb-2">
             Login / Signup
           </div>
