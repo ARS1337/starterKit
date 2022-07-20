@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 function Login(props) {
-  const { user, setuser, settoken } = props;
+  const { user, setuser, settoken,t } = props;
   const navigate = useNavigate();
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
@@ -29,10 +29,11 @@ function Login(props) {
       console.log(res.data)
       settoken(res.data.token)
       setuser(username);
-      enqueueSnackbar(process + " successfull !", { variant: "success" });
+      // enqueueSnackbar(process + " successfull !", { variant: "success" });
+      enqueueSnackbar(res.data.loginStatus, { variant: "success" });
       navigate("/Dashboard");
     } else {
-      enqueueSnackbar(process + " failed ", { variant: "error" });
+      enqueueSnackbar(res.data.loginStatus, { variant: "error" });
       // seterrors(res.data.errors);
       // res.data.errors.map((error) =>
       //   enqueueSnackbar(error.msg, { variant: "error" })
@@ -45,11 +46,11 @@ function Login(props) {
       <form action="">
         <div className="flex items-center justify-center flex-col gap-4 drop-shadow-xl bg-orange-400 p-8 pb-6 rounded-2xl mb-[10vh]">
           <div className="text-3xl font-thin tracking-wide mb-2">
-            Login / Signup
+            {t('login')} / {t("signup")}
           </div>
 
           <div className="flex items-center justify-between w-[100%]">
-            <label className="pr-2 text-xl">Username:</label>
+            <label className="pr-2 text-xl">{t('username')}:</label>
             <input
               value={username}
               onChange={(e) => {
@@ -62,7 +63,7 @@ function Login(props) {
           </div>
 
           <div className="flex items-center justify-between w-[100%]">
-            <label className="pr-2 text-xl">Password:</label>
+            <label className="pr-2 text-xl">{t('password')}:</label>
             <input
               value={password}
               onChange={(e) => {
@@ -86,7 +87,7 @@ function Login(props) {
                 }}
               />
               <label for="login" className="pl-2 text-xl">
-                Login
+                {t('login')}
               </label>
             </div>
             <div>
@@ -99,8 +100,8 @@ function Login(props) {
                   setprocess("signup");
                 }}
               />
-              <label for="signup" className="pl-2 text-xl">
-                Signup
+              <label htmlFor="signup" className="pl-2 text-xl">
+                {t('signup')}
               </label>
             </div>
           </div>
@@ -109,7 +110,7 @@ function Login(props) {
             onClick={handleSubmit}
             className="bg-white p-2 rounded-md px-6 text-black font-light tracking-wide text-xl mt-2 focus:cursor-pointer"
           >
-            Submit
+            {t('submit')}
           </button>
         </div>
       </form>

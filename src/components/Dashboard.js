@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const { useSnackbar } = require("notistack");
 
 function Dashboard(props) {
-  const { token, settoken } = props;
+  const { token, settoken,t } = props;
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
@@ -34,7 +34,7 @@ function Dashboard(props) {
     }
     console.log("token end: ",token);
   }, []);
-  return <div className="">Dashboard</div>;
+  return <div className="bg-slate-300 w-full h-full">{t('dashboard')}</div>;
 }
 
 export default Dashboard;
