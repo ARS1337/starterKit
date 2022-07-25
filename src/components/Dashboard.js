@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 const { useSnackbar } = require("notistack");
 
 function Dashboard(props) {
-  const { token, settoken,t } = props;
+  const { token, settoken, t } = props;
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
-    console.log("token start: ",token);
+    console.log("token start: ", token);
     if (token) {
       axios
         .post(
@@ -29,12 +29,26 @@ function Dashboard(props) {
             console.log(err);
           }
         });
-    }else{
-      navigate('/')
+    } else {
+      navigate("/");
     }
-    console.log("token end: ",token);
+    console.log("token end: ", token);
   }, []);
-  return <div className="bg-slate-300 w-full h-full">{t('dashboard')}</div>;
+  return (
+    <div className="bg-slate-300 w-full h-full flex items-center justify-center flex-col">
+      <div>{t("dashboard")}</div>
+      <button
+        onClick={() => {
+          settoken("");
+          localStorage.setItem("token", "");
+          navigate('/')
+        }}
+        className='text-blue-500'
+      >
+        logout
+      </button>
+    </div>
+  );
 }
 
 export default Dashboard;
